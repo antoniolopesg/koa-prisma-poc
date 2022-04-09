@@ -38,7 +38,9 @@
     "node": "16.x"
   },
   "dependencies": {
+    "@koa/router": "^10.1.1",
     "@prisma/client": "^3.12.0",
+    "@types/koa__router": "^8.0.11",
     "koa": "^2.13.4",
     "koa-body": "^4.2.0",
     "module-alias": "^2.2.2",
