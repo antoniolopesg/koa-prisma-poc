@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc",
+    "dev": "tsnd --respawn --transpile-only --inspect=0.0.0.0:9229 src/",
     "lint": "eslint .",
     "lint:fix": "yarn lint -- --fix",
     "test": "jest --passWithNoTests --no-cache --runInBand",
@@ -29,6 +30,7 @@
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "ts-jest": "^27.1.4",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.3"
   },
   "engines": {
