@@ -1,6 +1,9 @@
 import Koa from 'koa'
 import koaBody from 'koa-body'
 import Router from '@koa/router'
+import { signInHandler, signInSchema } from '@/auth'
+import { validateBody } from '@/middlewares'
+import { AppError } from './appError'
 
 const app = new Koa()
 
@@ -8,6 +11,14 @@ app.use(async (ctx, next) => {
   try {
     await next()
   } catch (err) {
+    if (err instanceof AppError) {
+      ctx.status = err.statusCode
+      ctx.body = {
+        message: err.message
+      }
+      return
+    }
+
     ctx.status = 500
     ctx.body = {
       message: 'Unknown Error'
@@ -26,6 +37,8 @@ guestRouter.get('/', ctx => {
     message: 'Hello Whats Grupos :)'
   }
 })
+
+guestRouter.post('/api/signin', validateBody(signInSchema), signInHandler)
 
 app.use(guestRouter.routes())
 
