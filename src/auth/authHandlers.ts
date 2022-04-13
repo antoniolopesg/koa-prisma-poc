@@ -11,5 +11,5 @@ export async function signInHandler (ctx: Context): Promise<void> {
 
   const signin = await signinService(username, password)
 
-  ctx.body = signin
+  ctx.response.body = signin
 }
