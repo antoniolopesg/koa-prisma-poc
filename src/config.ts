@@ -1,7 +1,5 @@
 
-import type { Config } from './@types/node'
-
-export const config: Config = {
+export const config = {
   PORT: Number(process.env.PORT) || 3333,
   SECRET: process.env.SECRET ?? 'secret'
 }
