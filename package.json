@@ -13,6 +13,8 @@
     "test:watch": "yarn test -- --watch",
     "test:staged": "yarn test -- --findRelatedTests",
     "test:cov": "yarn test -- --coverage",
+    "test:integration": "yarn test -- -c ./jest.integration.config.js",
+    "test:integration:watch": "yarn test:integration -- --watch",
     "prepare": "husky install"
   },
   "devDependencies": {
