@@ -1,7 +1,8 @@
 import Koa from 'koa'
 import koaBody from 'koa-body'
 import Router from '@koa/router'
-import { signInHandler, signInSchema } from '@/auth'
+import { signInHandler } from '@/auth/authHandlers'
+import { signInSchema } from '@/auth/authSchemas'
 import { validateBody } from '@/middlewares'
 import { AppError } from './appError'
 
