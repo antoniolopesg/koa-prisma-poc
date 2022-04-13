@@ -3,7 +3,7 @@ import koaBody from 'koa-body'
 import Router from '@koa/router'
 import { signInHandler } from '@/auth/authHandlers'
 import { signInSchema } from '@/auth/authSchemas'
-import { validateBody } from '@/middlewares'
+import { validateBody } from '@/middlewares/middlewareValidateBody'
 import { AppError } from './appError'
 
 const app = new Koa()
