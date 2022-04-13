@@ -1,4 +1,4 @@
-import { Context } from 'koa'
+import type { Context } from 'koa'
 import { signinService } from './authServices'
 
 interface SignInRequestBody {
