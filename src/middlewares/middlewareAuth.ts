@@ -51,5 +51,8 @@ export async function auth (ctx: Context, next: Next): Promise<void> {
     ctx.response.body = {
       message: ONLY_AUTHENTICATED_USERS_CAN_ACESS_ERROR
     }
+    return
   }
+
+  await next()
 }
