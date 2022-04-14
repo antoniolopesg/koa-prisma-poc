@@ -3,6 +3,7 @@ import {
   INCORRECT_AUTHORIZATION_HEADER_FORMAT,
   ONLY_AUTHENTICATED_USERS_CAN_ACESS_ERROR
 } from '@/errorMessages'
+import { prisma } from '@/lib/prisma'
 import { verify } from 'jsonwebtoken'
 import { Context, Next } from 'koa'
 
@@ -34,9 +35,17 @@ export async function auth (ctx: Context, next: Next): Promise<void> {
   try {
     const payload = verify(token, config.SECRET)
 
-    ctx.user = {
-      id: Number(payload.sub)
+    const user = await prisma.user.findFirst({
+      where: {
+        id: Number(payload.sub)
+      }
+    })
+
+    if (!user) {
+      throw new Error()
     }
+
+    ctx.user = user
   } catch (err) {
     ctx.response.status = 401
     ctx.response.body = {

@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Context } from 'koa'
+import type { Context } from 'koa'
+import type { User } from '@prisma/client'
 
 declare module 'koa' {
   /**
@@ -7,8 +8,6 @@ declare module 'koa' {
      * more on declaration merging
      */
   interface Context {
-    user?: {
-      id: number
-    }
+    user?: User
   }
 }
