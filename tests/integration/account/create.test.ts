@@ -1,6 +1,7 @@
 import { postApiCall } from '@/tests/utils/utilsRest'
 import { clearDatabase, createUser } from '@/tests/utils/utilsDb'
-import { accountMessages, ONLY_AUTHENTICATED_USERS_CAN_ACESS_ERROR } from '@/errorMessages'
+import { ONLY_AUTHENTICATED_USERS_CAN_ACESS_ERROR } from '@/middlewares/middlewareAuth'
+import { ACCOUNT_NAME_ALREADY_IN_USE } from '@/account/accountErrorMessages'
 
 describe('Create Account Route', () => {
   beforeEach(clearDatabase)
@@ -56,7 +57,7 @@ describe('Create Account Route', () => {
 
     expect(response.statusCode).toBe(400)
     expect(response.body).toEqual({
-      message: accountMessages.ACCOUNT_NAME_ALREADY_IN_USE
+      message: ACCOUNT_NAME_ALREADY_IN_USE
     })
   })
 
