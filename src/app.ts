@@ -1,4 +1,4 @@
-import Koa from 'koa'
+import Koa, { Context, DefaultState, Request } from 'koa'
 import koaBody from 'koa-body'
 import Router from '@koa/router'
 import { signInHandler } from '@/auth/authHandlers'
@@ -8,8 +8,18 @@ import { AppError } from './appError'
 import { auth } from './middlewares/middlewareAuth'
 import { createAccountSchema } from './account/accountSchemas'
 import { createAccountHandler } from './account/accountHandlers'
+import { User } from '@prisma/client'
 
-const app = new Koa()
+export interface KoaRequest<RequestBody = any> extends Request {
+  body?: RequestBody
+}
+
+export interface KoaContext<RequestBody = any> extends Context {
+  request: KoaRequest<RequestBody>
+  user?: User
+}
+
+const app = new Koa<DefaultState, KoaContext>()
 
 app.use(async (ctx, next) => {
   try {

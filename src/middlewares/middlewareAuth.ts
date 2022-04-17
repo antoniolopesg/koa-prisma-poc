@@ -1,13 +1,14 @@
+import { KoaContext } from '@/app'
 import { config } from '@/config'
 import { prisma } from '@/lib/prisma'
 import { verify } from 'jsonwebtoken'
-import { Context, Next } from 'koa'
+import { Next } from 'koa'
 
 export const ONLY_AUTHENTICATED_USERS_CAN_ACESS_ERROR = 'Only authenticated users can access this route'
 
 export const INCORRECT_AUTHORIZATION_HEADER_FORMAT = 'Incorrect authorization header format'
 
-export async function auth (ctx: Context, next: Next): Promise<void> {
+export async function auth (ctx: KoaContext, next: Next): Promise<void> {
   const authorizationHeader = ctx.request.headers.authorization?.trim()
 
   if (!authorizationHeader) {

@@ -1,4 +1,4 @@
-import type { Context } from 'koa'
+import type { KoaContext } from '@/app'
 import { signinService } from './authServices'
 
 interface SignInRequestBody {
@@ -6,8 +6,8 @@ interface SignInRequestBody {
   password: string
 }
 
-export async function signInHandler (ctx: Context): Promise<void> {
-  const { username, password } = ctx.request.body as SignInRequestBody
+export async function signInHandler (ctx: KoaContext<SignInRequestBody>): Promise<void> {
+  const { username, password } = ctx.request.body!
 
   const signin = await signinService(username, password)
 
