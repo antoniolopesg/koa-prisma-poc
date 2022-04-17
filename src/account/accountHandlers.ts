@@ -1,12 +1,12 @@
-import { Context } from 'koa'
+import { KoaContext } from '@/app'
 import { createAccountService } from './accountServices'
 
 interface CreateAccountRequestBody {
   name: string
 }
 
-export async function createAccountHandler (ctx: Context): Promise<void> {
-  const { name } = ctx.request.body as CreateAccountRequestBody
+export async function createAccountHandler (ctx: KoaContext<CreateAccountRequestBody>): Promise<void> {
+  const { name } = ctx.request.body!
 
   await createAccountService(name, ctx.user!)
 
