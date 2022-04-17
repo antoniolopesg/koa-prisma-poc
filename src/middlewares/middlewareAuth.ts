@@ -20,7 +20,7 @@ export async function auth (ctx: Context, next: Next): Promise<void> {
 
   const authorizationHeaderPattern = /^Bearer .+/
 
-  const correctAuthorizationHeaderFormat = RegExp(authorizationHeaderPattern).test(authorizationHeader)
+  const correctAuthorizationHeaderFormat = authorizationHeaderPattern.test(authorizationHeader)
 
   if (!correctAuthorizationHeaderFormat) {
     ctx.response.status = 401
