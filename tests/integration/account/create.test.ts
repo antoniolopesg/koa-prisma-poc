@@ -2,7 +2,7 @@ import { postApiCall } from '@/tests/utils/utilsRest'
 import { clearDatabase, createUser } from '@/tests/utils/utilsDb'
 import { accountMessages, ONLY_AUTHENTICATED_USERS_CAN_ACESS_ERROR } from '@/errorMessages'
 
-describe('SignIn Route', () => {
+describe('Create Account Route', () => {
   beforeEach(clearDatabase)
 
   it('Should return 201 if a valid name is provided', async () => {
