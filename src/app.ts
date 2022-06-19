@@ -49,7 +49,7 @@ app.use(koaBody({ json: true }))
 guestRouter.get('/', ctx => {
   ctx.status = 200
   ctx.body = {
-    message: 'Hello Whats Grupos :)'
+    message: 'My Koa poc'
   }
 })
 
