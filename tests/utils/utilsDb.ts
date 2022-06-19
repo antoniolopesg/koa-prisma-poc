@@ -43,7 +43,6 @@ function getRandomizedUserCredentials (): UserCredentials {
 export async function clearDatabase (): Promise<void> {
   await prisma.$transaction(
     [
-      prisma.account.deleteMany(),
       prisma.user.deleteMany()
     ]
   )

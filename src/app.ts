@@ -6,8 +6,6 @@ import { signInSchema } from '@/auth/authSchemas'
 import { validateBody } from '@/middlewares/middlewareValidateBody'
 import { AppError } from './appError'
 import { auth } from './middlewares/middlewareAuth'
-import { createAccountSchema } from './account/accountSchemas'
-import { createAccountHandler } from './account/accountHandlers'
 import { User } from '@prisma/client'
 
 export interface KoaRequest<RequestBody = any> extends Request {
@@ -57,8 +55,6 @@ guestRouter.post('/api/signin', validateBody(signInSchema), signInHandler)
 
 // Protected Routes
 authRouter.use(auth)
-
-authRouter.post('/api/accounts', validateBody(createAccountSchema), createAccountHandler)
 
 app.use(guestRouter.routes())
 app.use(authRouter.routes())
