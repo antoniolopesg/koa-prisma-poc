@@ -3,6 +3,7 @@ import './alias'
 import http from 'http'
 import app from './app'
 import { config } from './config'
+import { prisma } from './lib/prisma'
 
 async function main (): Promise<void> {
   const server = http.createServer(app.callback())
@@ -12,5 +13,10 @@ async function main (): Promise<void> {
   })
 }
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-main()
+prisma
+  .$connect()
+  .then(main)
+  .catch((err) => {
+    console.error(err)
+    process.exit(1)
+  })
