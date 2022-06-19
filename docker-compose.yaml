@@ -1,0 +1,22 @@
+version: '3.4'
+services:
+  postgres-compose:
+    image: postgres:13.1
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "docker"
+      POSTGRES_DB: "koapoc"
+    ports:
+      - "5432:5432"
+    restart: always
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "docker"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-compose
+
+
